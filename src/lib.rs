@@ -60,7 +60,7 @@ pub fn validate_text_circle(s: &str) -> String {
     }
     
     match path_out_of_circle(s) {
-        Some(path) => return format!("Invalid. There should not be a path from inside the circle to outside:<br><br>{path}"),
+        Some(path) => return format!("Invalid. There should not be a path from inside the circle to outside:<br><br><code>{path}</code>"),
         None => {let r = radius(s); return format!("This is a valid text circle of radius {r}.")}
     }
 }
