@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    </head>
+    <body>
+        <script type="module">
+            import init, { validate_text_circle } from './text_circle_validator.js';
+            const run = async () => {
+                await init();
+                document.getElementById("alert_button").onclick = () => {
+                    let msg = document.getElementById("message_input").value;
+                    document.getElementById("outcome_text").innerHTML = validate_text_circle(msg);
+                }
+            }
+            run();
+        </script>
+        <h1>Text circle validator</h1>
+        <textarea autofocus id="message_input" rows="20" cols="20"></textarea>
+        <br>
+        <button type="button" id="alert_button">Validate text circle</button>
+        <h2>Outcome</h2>
+        <p id="outcome_text">Press 'Validate text circle' button for outcome.</p>
+    </body>
+</html>
+
