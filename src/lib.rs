@@ -36,19 +36,19 @@ impl PathStep {
 #[wasm_bindgen]
 pub fn validate_text_circle(s: &str) -> String {
     if s.len() == 0 {
-        return "The input is empty".to_string();
+        return "Invalid. The input is empty.".to_string();
     }
 
     if !square(s) {
-        return "The input is not square".to_string();
+        return "Invalid. The input is not square.".to_string();
     }
     
     if !odd(s) {
-        return "The side length of the square is not odd".to_string();
+        return "Invalid. The side length of the square is not odd.".to_string();
     }
     
     if distinct_characters(s).len() != 2 {
-        return "The input does not contain 2 distinct characters".to_string();
+        return "Invalid. The input does not contain 2 distinct characters.".to_string();
     }
     
     let missing_background = missing_background_characters(s);
@@ -56,12 +56,12 @@ pub fn validate_text_circle(s: &str) -> String {
     if missing_background.len() > 0 {
         let background = background_character(s);
         let formatted_missing_background = br_separated_tuples(&missing_background);
-        return format!("The following positions (x, y) from (0, 0) at left top should be background character \"{background}\":<br>{formatted_missing_background}");
+        return format!("Invalid. The following positions (x, y) from (0, 0) at left top should be background character \"{background}\":<br>{formatted_missing_background}");
     }
     
     match path_out_of_circle(s) {
-        Some(path) => return format!("There should not be a path from inside the circle to outside<br><br>{path}"),
-        None => {let r = radius(s); return format!("This is a valid text circle of radius {r}")}
+        Some(path) => return format!("Invalid. There should not be a path from inside the circle to outside:<br><br>{path}"),
+        None => {let r = radius(s); return format!("This is a valid text circle of radius {r}.")}
     }
 }
 
